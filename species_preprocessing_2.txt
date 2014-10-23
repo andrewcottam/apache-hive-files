@@ -1,4 +1,6 @@
 --creates a spatial index on the species dataset by creating new geometries for each species that are the intersection of the species range with one degree cells. The resulting dataset contains the species id, the cell id, whether the intersection is completely covered by the cell, the intersection geometry and the area of the cell or the intersection geometry
+SET mapreduce.map.java.opts=-Djava.net.preferIPv4Stack=true -Xmx1700m;
+SET mapreduce.map.memory.mb=2048;
 SET hive.input.format=org.apache.hadoop.hive.ql.io.HiveInputFormat;
 SET mapred.map.tasks=1000;
 
@@ -22,3 +24,5 @@ FROM (
   ) sub;
 
 SET hive.input.format=org.apache.hadoop.hive.ql.io.CombineHiveInputFormat;
+SET mapreduce.map.java.opts=-Djava.net.preferIPv4Stack=true -Xmx825955249;
+SET mapreduce.map.memory.mb=1024;
