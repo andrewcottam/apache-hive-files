@@ -3,6 +3,7 @@ SET mapreduce.map.java.opts=-Djava.net.preferIPv4Stack=true -Xmx1700m;
 SET mapreduce.map.memory.mb=2048;
 SET mapred.reduce.tasks=25;
 
+DROP TABLE species.species_unique_2014_2;
 CREATE TABLE species.species_unique_2014_2 
 STORED AS SEQUENCEFILE AS 
 SELECT 

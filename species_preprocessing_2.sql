@@ -1,10 +1,11 @@
 --creates a spatial index on the species dataset by creating new geometries for each species that are the intersection of the species range with one degree cells. The resulting dataset contains the species id, the cell id, whether the intersection is completely covered by the cell, the intersection geometry and the area of the cell or the intersection geometry
 SET mapreduce.map.java.opts=-Djava.net.preferIPv4Stack=true -Xmx1700m;
-SET mapreduce.map.memory.mb=2048;
 SET hive.input.format=org.apache.hadoop.hive.ql.io.HiveInputFormat;
+SET mapreduce.map.memory.mb=2048;
 SET mapred.map.tasks=1000;
 
-CREATE TABLE species.species_unique_2014_2_cells
+DROP TABLE species.species_2014_2_cells;
+CREATE TABLE species.species_2014_2_cells
 STORED AS RCFILE
 AS
 SELECT
@@ -18,9 +19,9 @@ FROM (
     id_no, 
 	c.cell, 
 	c.fully_covered, 
-	IF(fully_covered, NULL, geotools_cell_intersects(1.0, c.cell, geom)) cell_intersect
+	IF(fully_covered, NULL, cell_intersects(1.0, c.cell, geom)) cell_intersect
   FROM 
-    species.species_unique_2014_2 LATERAL VIEW geotools_cells_udtf(1.0, geom) c
+    species.species_2014_2 LATERAL VIEW geotools_cells_udtf(1.0, geom) c
   ) sub;
 
 SET hive.input.format=org.apache.hadoop.hive.ql.io.CombineHiveInputFormat;
