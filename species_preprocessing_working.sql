@@ -54,7 +54,7 @@ FROM
 WHERE 
   s.fully_covered 
   OR w.fully_covered 
-  OR geotools_intersects(s.cell_intersect, w.cell_intersect);
+  OR ST_Intersects(s.cell_intersect, w.cell_intersect);
   
 DROP TABLE species.areatest2;
 CREATE TABLE species.areatest2 
