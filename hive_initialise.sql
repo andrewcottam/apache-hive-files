@@ -87,8 +87,8 @@ CREATE TEMPORARY FUNCTION ST_AsBinary AS 'com.esri.hadoop.hive.ST_AsBinary';
 add JAR /home/cottaan/java_compiled_classes/original-jrc.jar;
 CREATE TEMPORARY FUNCTION esri_area AS 'jrc.esri.AreaUdf';
 --CREATE TEMPORARY FUNCTION esri_cell_intersects AS 'jrc.esri.CellIntersectsUdf';
---CREATE TEMPORARY FUNCTION cell_intersects AS 'jrc.esri.CellIntersectsUdf';
---CREATE TEMPORARY FUNCTION esri_cells_udtf AS 'jrc.esri.CellUdtf';
+CREATE TEMPORARY FUNCTION esri_cell_intersects AS 'jrc.esri.CellIntersectsUdf';
+CREATE TEMPORARY FUNCTION esri_cells_udtf AS 'jrc.esri.CellUdtf';
 CREATE TEMPORARY FUNCTION cells_udtf AS 'jrc.esri.CellUdtf';
 CREATE TEMPORARY FUNCTION esri_intersects AS 'jrc.esri.IntersectsUdf';
 
@@ -96,7 +96,7 @@ CREATE TEMPORARY FUNCTION geotools_area AS 'jrc.geotools.AreaUdf';
 CREATE TEMPORARY FUNCTION geotools_cell_area AS 'jrc.geotools.CellAreaUdf';
 --CREATE TEMPORARY FUNCTION geotools_cell_intersects AS 'jrc.geotools.CellIntersectsUdf';
 CREATE TEMPORARY FUNCTION geotools_cell_intersects AS 'jrc.geotools.CellIntersectsUdf';
-CREATE TEMPORARY FUNCTION geotools_cells_udtf AS 'jrc.geotools.CellUdtf';
+--CREATE TEMPORARY FUNCTION geotools_cells_udtf AS 'jrc.geotools.CellUdtf';
 CREATE TEMPORARY FUNCTION geotools_intersects AS 'jrc.geotools.IntersectsUdf';
 CREATE TEMPORARY FUNCTION ST_Transform AS 'jrc.geotools.TransformUdf';
 
