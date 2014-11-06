@@ -11,6 +11,7 @@ CREATE TEMPORARY FUNCTION ST_GeomFromJson AS 'com.esri.hadoop.hive.ST_GeomFromJs
 CREATE TEMPORARY FUNCTION ST_GeomFromText AS 'com.esri.hadoop.hive.ST_GeomFromText';
 CREATE TEMPORARY FUNCTION ST_GeomFromQuadkey AS 'org.jrc.hadoop.hive.ST_GeomFromQuadkey';
 CREATE TEMPORARY FUNCTION ST_Simplify AS 'org.jrc.hadoop.hive.ST_Simplify';
+CREATE TEMPORARY FUNCTION ST_CellIntersection AS 'org.jrc.hadoop.hive.ST_CellIntersection';
 CREATE TEMPORARY FUNCTION ST_GeomFromWKB AS 'com.esri.hadoop.hive.ST_GeomFromWKB';
 CREATE TEMPORARY FUNCTION ST_GeometryType AS 'com.esri.hadoop.hive.ST_GeometryType';
 CREATE TEMPORARY FUNCTION ST_LineFromWKB AS 'com.esri.hadoop.hive.ST_LineFromWKB';
