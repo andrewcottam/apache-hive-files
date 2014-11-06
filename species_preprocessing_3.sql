@@ -1,6 +1,7 @@
+--first stage in the species/wdpa processing to get the areas of intersection
 SET mapred.reduce.tasks=200;
-DROP TABLE tmp.areatest1;
-CREATE TABLE tmp.areatest1 
+DROP TABLE species.areatest1;
+CREATE TABLE species.areatest1 
 STORED AS SEQUENCEFILE AS 
 SELECT 
   s.id_no, 
@@ -13,8 +14,8 @@ SELECT
   w.cell_intersect wdpa_cell_intersect 
 FROM 
   tmp.wdpa_index w 
-  JOIN species.species_2014_2_cells s ON (s.cell = w.cell) 
+  JOIN species.species_unique_2014_2_index s ON (s.cell = w.cell) 
 WHERE 
   s.fully_covered 
   OR w.fully_covered 
-  OR geotools_intersects(s.cell_intersect, w.cell_intersect);
+  OR ST_Intersects(ST_GeomFromWkb(s.cell_intersect), ST_GeomFromWkb(w.cell_intersect));
