@@ -1,7 +1,7 @@
+--esri libraries
 add JAR /home/cottaan/java_compiled_classes/esri-geometry-api.jar;
 add JAR /home/cottaan/java_compiled_classes/spatial-sdk-hive.jar;
 add JAR /home/cottaan/java_compiled_classes/spatial-sdk-json.jar;
-add JAR /home/cottaan/java_compiled_classes/jrc-hadoop-hive.jar;
 CREATE TEMPORARY FUNCTION ST_AsGeoJson AS 'com.esri.hadoop.hive.ST_AsGeoJson';
 CREATE TEMPORARY FUNCTION ST_AsJson AS 'com.esri.hadoop.hive.ST_AsJson';
 CREATE TEMPORARY FUNCTION ST_AsText AS 'com.esri.hadoop.hive.ST_AsText';
@@ -9,10 +9,6 @@ CREATE TEMPORARY FUNCTION ST_GeomCollection AS 'com.esri.hadoop.hive.ST_GeomColl
 CREATE TEMPORARY FUNCTION ST_GeomFromGeoJson AS 'com.esri.hadoop.hive.ST_GeomFromGeoJson';
 CREATE TEMPORARY FUNCTION ST_GeomFromJson AS 'com.esri.hadoop.hive.ST_GeomFromJson';
 CREATE TEMPORARY FUNCTION ST_GeomFromText AS 'com.esri.hadoop.hive.ST_GeomFromText';
-CREATE TEMPORARY FUNCTION ST_GeomFromQuadkey AS 'org.jrc.hadoop.hive.ST_GeomFromQuadkey';
-CREATE TEMPORARY FUNCTION ST_Simplify AS 'org.jrc.hadoop.hive.ST_Simplify';
-CREATE TEMPORARY FUNCTION ST_OGCSimplify AS 'org.jrc.hadoop.hive.ST_OGCSimplify';
-CREATE TEMPORARY FUNCTION ST_CellIntersection AS 'org.jrc.hadoop.hive.ST_CellIntersection';
 CREATE TEMPORARY FUNCTION ST_GeomFromWKB AS 'com.esri.hadoop.hive.ST_GeomFromWKB';
 CREATE TEMPORARY FUNCTION ST_GeometryType AS 'com.esri.hadoop.hive.ST_GeometryType';
 CREATE TEMPORARY FUNCTION ST_LineFromWKB AS 'com.esri.hadoop.hive.ST_LineFromWKB';
@@ -86,13 +82,20 @@ CREATE TEMPORARY FUNCTION ST_Z AS 'com.esri.hadoop.hive.ST_Z';
 CREATE TEMPORARY FUNCTION ST_AsBinary AS 'com.esri.hadoop.hive.ST_AsBinary';
 --SET mapred.child.java.opts=-Xmx4G -XX:+UseConcMarkSweepGC;
 
+--my libraries
+add JAR /home/cottaan/java_compiled_classes/jrc-hadoop-hive.jar;
+CREATE TEMPORARY FUNCTION ST_GeomFromQuadkey AS 'org.jrc.hadoop.hive.ST_GeomFromQuadkey';
+CREATE TEMPORARY FUNCTION ST_Simplify AS 'org.jrc.hadoop.hive.ST_Simplify';
+CREATE TEMPORARY FUNCTION ST_OGCSimplify AS 'org.jrc.hadoop.hive.ST_OGCSimplify';
+CREATE TEMPORARY FUNCTION ST_CellIntersection AS 'org.jrc.hadoop.hive.ST_CellIntersection';
+
+--lars libraries
 add JAR /home/cottaan/java_compiled_classes/original-jrc.jar;
 CREATE TEMPORARY FUNCTION esri_area AS 'jrc.esri.AreaUdf';
 CREATE TEMPORARY FUNCTION esri_cell_intersects AS 'jrc.esri.CellIntersectsUdf';
 CREATE TEMPORARY FUNCTION esri_cells_udtf AS 'jrc.esri.CellUdtf';
 CREATE TEMPORARY FUNCTION cells_udtf AS 'jrc.esri.CellUdtf';
 CREATE TEMPORARY FUNCTION esri_intersects AS 'jrc.esri.IntersectsUdf';
-
 CREATE TEMPORARY FUNCTION geotools_area AS 'jrc.geotools.AreaUdf';
 CREATE TEMPORARY FUNCTION geotools_cell_area AS 'jrc.geotools.CellAreaUdf';
 CREATE TEMPORARY FUNCTION geotools_cell_intersects AS 'jrc.geotools.CellIntersectsUdf';
